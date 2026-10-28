@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>🎀 Самый милый калькулятор 🎀</title>
+    <style>
+        body {
+            background-color: #FFF0F5; /* Нежно-розовый фон */
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Базовый класс для всех летающих декораций */
+        .cute-decor {
+            position: absolute;
+            user-select: none;
+            cursor: default;
+        }
+
+        /* Анимации покачивания (разная скорость для естественности) */
+        .float-fast { animation: float 2.5s ease-in-out infinite; }
+        .float-med { animation: float 3.5s ease-in-out infinite; }
+        .float-slow { animation: float 4.5s ease-in-out infinite; }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        /* Контейнер калькулятора */
+        .calculator-card {
+            background: #FFE4E1; /* Pastel Rose */
+            border: 4px dashed #FFB6C1;
+            border-radius: 30px;
+            padding: 30px;
+            width: 350px;
+            box-shadow: 0 10px 25px rgba(255, 182, 193, 0.5);
+            text-align: center;
+            z-index: 10;
+            position: relative;
+        }
+
+        h2 {
+            color: #FF69B4; /* Ярко-розовый */
+            margin-top: 0;
+            font-size: 22px;
+            text-shadow: 1px 1px 2px white;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            color: #DB7093;
+            font-size: 14px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #FFC0CB;
+            border-radius: 15px;
+            box-sizing: border-box;
+            text-align: center;
+            font-size: 16px;
+            color: #C71585;
+            background-color: #FFF9FA;
+            outline: none;
+        }
+
+        input:focus, select:focus {
+            border-color: #FF69B4;
+            box-shadow: 0 0 5px #FFB6C1;
+        }
+
+        /* Розовая кнопка */
+        .cute-btn {
+            background: linear-gradient(#FFB6C1, #FF69B4);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(255, 105, 180, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .cute-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 15px rgba(255, 105, 180, 0.6);
+        }
+
+        /* Окошко с результатом */
+        .result-box {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: white;
+            border: 2px solid #FFB6C1;
+            border-radius: 15px;
+            min-height: 24px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #C71585;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- МНОГО МИЛЫХ ДЕКОРАЦИЙ ПО ВСЕМУ ЭКРАНУ -->
+    <!-- Левая сторона -->
+    <div class="cute-decor float-fast" style="top: 8%; left: 5%; font-size: 50px;">🎀</div>
+    <div class="cute-decor float-slow" style="top: 25%; left: 12%; font-size: 40px;">✨</div>
+    <div class="cute-decor float-med" style="top: 50%; left: 4%; font-size: 45px;">💖</div>
+    <div class="cute-decor float-slow" style="bottom: 20%; left: 15%; font-size: 35px;">🌸</div>
+    <div class="cute-decor float-fast" style="bottom: 8%; left: 6%; font-size: 55px;">🎀</div>
+
+    <!-- Правая сторона -->
+    <div class="cute-decor float-med" style="top: 6%; right: 7%; font-size: 55px;">🎀</div>
+    <div class="cute-decor float-fast" style="top: 28%; right: 14%; font-size: 38px;">💕</div>
+    <div class="cute-decor float-slow" style="top: 48%; right: 5%; font-size: 48px;">🔮</div>
+    <div class="cute-decor float-med" style="bottom: 25%; right: 12%; font-size: 42px;">✨</div>
+    <div class="cute-decor float-fast" style="bottom: 7%; right: 6%; font-size: 50px;">💝</div>
+
+    <!-- Контейнер калькулятора -->
+    <div class="calculator-card">
+        <h2>✨Милашечный калькулятор✨</h2>
+        
+        <div class="input-group">
+            <label>Первое число 🎀</label>
+            <input type="number" id="num1" placeholder="Введи чиселко...">
+        </div>
+
+        <div class="input-group">
+            <label>Магия (Операция) ✨</label>
+            <select id="operator">
+                <option value="+">Сложить (+)</option>
+                <option value="-">Вычесть (-)</option>
+                <option value="*">Умножить (*)</option>
+                <option value="/">Поделить (/)</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>Второе число 🎀</label>
+            <input type="number" id="num2" placeholder="Введи второе...">
+        </div>
+
+        <button class="cute-btn" onclick="calculate()">Посчитать! 💕</button>
+
+        <div class="result-box" id="result">Жду твоих чисел... 👉👈</div>
+    </div>
+
+    <script>
+        function calculate() {
+            let val1 = document.getElementById('num1').value;
+            let val2 = document.getElementById('num2').value;
+            let op = document.getElementById('operator').value;
+            let resultBox = document.getElementById('result');
+
+            if (val1 === '' || val2 === '') {
+                resultBox.innerHTML = "Сначала введи оба числа, плиз! 🥺";
+                return;
+            }
+
+            let n1 = parseFloat(val1);
+            let n2 = parseFloat(val2);
+            let res;
+
+            switch(op) {
+                case '+': res = n1 + n2; break;
+                case '-': res = n1 - n2; break;
+                case '*': res = n1 * n2; break;
+                case '/':
+                    if (n2 === 0) {
+                        resultBox.innerHTML = "На ноль делить нельзя, зай! ❌";
+                        return;
+                    }
+                    res = n1 / n2;
+                    break;
+                default:
+                    resultBox.innerHTML = "Что-то пошло не так... 😿";
+                    return;
+            }
+
+            resultBox.innerHTML = "Результат: " + res + " 💝✨";
+        }
+    </script>
+
+</body>
+</html>
